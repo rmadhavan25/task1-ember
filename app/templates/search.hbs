@@ -1,0 +1,11 @@
+{{page-title "Search"}}
+
+{{input type="text"  placeholder="Enter Directory" value=importantinfo }}<br><br>
+{{input type="text"  placeholder="Enter filename/keyword" value=importantinfo2 }}<br><br>
+<button type="button" class="button"{{action "routeaction" importantinfo importantinfo2}}>Search</button>
+
+
+
+{{#each @model.allFiles as |files|}}
+      <li>{{files}}</li>
+{{/each}}
