@@ -1,11 +1,19 @@
 {{page-title "Search"}}
 
-{{input type="text"  placeholder="Enter Directory" value=importantinfo }}<br><br>
-{{input type="text"  placeholder="Enter filename/keyword" value=importantinfo2 }}<br><br>
-<button type="button" class="button"{{action "routeaction" importantinfo importantinfo2}}>Search</button>
+{{!-- input box --}}
+<div class="input-div">
+{{input type="text"  placeholder="Enter Directory || eg:D:/ or D:/folder-name" class="input-box" value=this.directoryPath }}<br><br>
+{{input type="text"  placeholder="Enter filename/keyword" class="input-box" value=this.keyword }}<br><br>
+<button type="button" class="button"{{on "click" (fn this.getFiles this.directoryPath this.keyword)}}>Search</button>
+</div>
 
+<br><br>
 
-
-{{#each @model.allFiles as |files|}}
-      <li>{{files}}</li>
-{{/each}}
+{{!-- result table --}}
+<Table>
+      {{#each this.result.allFiles as |files|}}
+      <tr>
+            <td>{{files}}</td>
+      </tr>
+      {{/each}}
+</Table>
