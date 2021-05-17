@@ -1,14 +1,15 @@
 <table class="file-table">
 <tr>
-      <th>ALL FILES</th>
-      <th>TYPE</th>
+      <th>{{@col1}}</th>
+      <th>{{@col2}}</th>
+      
 </tr>
 
-{{#if @result.res}}
+{{#if @result.files}}
       
-      {{#each @result.res as |file|}}
+      {{#each @result.files as |file|}}
             <tr>
-            <td>{{file.fileAlpha}}<mark>{{file.fileKey}}</mark>{{file.fileBeta}}</td>
+            <td>{{tohtml (highlight file.name @result.keyword)}}</td>
             <td>{{file.type}}</td>
             </tr>
       {{/each}}

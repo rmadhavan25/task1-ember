@@ -8,6 +8,7 @@ export default class SearchController extends Controller {
     //variable to store the results from api call
     @tracked result;
     @tracked loading;
+
     
     //function to fetch the files using the user inputs
     @action
