@@ -1,6 +1,21 @@
 <table class="file-table">
 <tr>
       <th>ALL FILES</th>
+      <th>TYPE</th>
 </tr>
-{{yield}}
+
+{{#if @result.res}}
+      
+      {{#each @result.res as |file|}}
+            <tr>
+            <td>{{file.fileAlpha}}<mark>{{file.fileKey}}</mark>{{file.fileBeta}}</td>
+            <td>{{file.type}}</td>
+            </tr>
+      {{/each}}
+      {{else}}
+      <tr>
+            <td>{{@loading}}</td>
+            <td>{{@loading}}</td>
+      </tr>
+      {{/if}}
 </table>
