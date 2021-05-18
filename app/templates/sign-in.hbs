@@ -1,0 +1,8 @@
+{{page-title "SignIn"}}
+
+{{!-- input box --}}
+<div class="input-div">
+    {{input type="text"  placeholder="PhoneNumber" class="input-box"  value=this.phoneNumber }}<br><br>
+    {{input type="password"  placeholder="Enter Password" class="input-box" value=this.password }}<br><br>
+    <button type="button" class="button"{{on "click" (fn this.verifyUser this.phoneNumber this.password)}}>Log In</button>
+</div>

@@ -1,15 +1,42 @@
 {{page-title "Search"}}
 
+
+
 {{!-- input box --}}
 <div class="input-div">
-    {{input type="text"  placeholder="Enter Directory || eg:D:/ or D:/folder-name" class="input-box" autocomplete="on" value=this.directoryPath }}<br><br>
-    {{input type="text"  placeholder="Enter filename/keyword" class="input-box" autocomplete="on" value=this.keyword }}<br><br>
+    {{input type="text"  placeholder="Enter Directory || eg:D:/ or D:/folder-name" class="input-box"  value=this.directoryPath }}<br><br>
+    {{input type="text"  placeholder="Enter filename/keyword" class="input-box" value=this.keyword }}<br><br>
     <button type="button" class="button"{{on "click" (fn this.getFiles this.directoryPath this.keyword)}}>Search</button>
 </div>
 
 <br><br>
 
+{{#if this.result.files}}
 {{!-- result table --}}
-<Table @result={{this.result}} @loading={{this.loading}} @col1="ALL FILES"  @col2="TYPE"/>
+{{!-- <Table @result={{this.result}} @loading={{this.loading}} @col1="ALL FILES"  @col2="TYPE"/> --}}
+<Table>
+    <tr>
+      <th>ALL FILES</th>
+      <th>TYPE</th>
+      
+</tr>
+
+{{#if this.result.files}}
+      
+      {{#each this.result.files as |file|}}
+      <tr>
+            <td>{{tohtml (highlight file.name this.result.keyword)}}</td>
+            <td>{{file.type}}</td>
+      </tr>
+      {{/each}}
+      {{else}}
+      <tr>
+            <td>{{this.loading}}</td>
+            <td>{{this.loading}}</td>
+      </tr>
+      {{/if}}
+</Table>
+{{/if}}
+
 
 

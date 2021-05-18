@@ -1,5 +1,5 @@
 <table class="file-table">
-<tr>
+{{!-- <tr>
       <th>{{@col1}}</th>
       <th>{{@col2}}</th>
       
@@ -8,15 +8,16 @@
 {{#if @result.files}}
       
       {{#each @result.files as |file|}}
-            <tr>
+      <tr>
             <td>{{tohtml (highlight file.name @result.keyword)}}</td>
             <td>{{file.type}}</td>
-            </tr>
+      </tr>
       {{/each}}
       {{else}}
       <tr>
             <td>{{@loading}}</td>
             <td>{{@loading}}</td>
       </tr>
-      {{/if}}
+      {{/if}} --}}
+      {{yield}}
 </table>
