@@ -1,6 +1,9 @@
 import { helper } from '@ember/component/helper';
 
 function highlight([text,key]) {
+  if(text==='File'||text==='Folder'){
+		return text;
+	}
   const matchingKey = new RegExp(key,"gi");
   const original = text;
 

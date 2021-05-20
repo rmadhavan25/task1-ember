@@ -8,15 +8,8 @@ export default class SearchController extends Controller {
 
     //variable to store the results from api call
     @tracked result;
-    @tracked loading;
     @service user;
 
-    // @action
-    // logOut(){
-    //     this.user.logOut();
-    // }
-    
-    //function to fetch the files using the user inputs
     @action
     async getFiles(directoryPath,keyword){
         console.log(directoryPath,keyword)
@@ -24,12 +17,18 @@ export default class SearchController extends Controller {
             alert('Please enter all the details');
         }
         else{
-            this.loading = "loading...";
+
             let response = await fetch(`http://localhost:9090/SampleWebApp/getfile?keyword=${keyword}&directoryPath=${directoryPath}&phone=${this.user.userPhone}`);
             let data = await response.json();
             console.log(data);
             this.result = data;
-            this.loading="No Files To Display";
+            console.log(this.result);
+            // this.user.updateFiles(data.files);
+            // this.user.updateKeyword(data.keyword);
+            // this.user.updateColumns(data.columns);
+            // console.log(this.user.files);
+            // console.log(this.user.keyword);
+            // console.log(this.user.columns);
         }
         
         

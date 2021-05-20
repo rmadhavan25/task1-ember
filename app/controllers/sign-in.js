@@ -5,8 +5,7 @@ import { inject as service } from '@ember/service';
 
 
 export default class SearchController extends Controller {
-    @tracked phoneNumber;
-    @tracked password;
+
     @service router;
     @service user;
 

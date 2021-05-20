@@ -11,31 +11,11 @@
 
 <br><br>
 
-{{#if this.result.files}}
 {{!-- result table --}}
-{{!-- <Table @result={{this.result}} @loading={{this.loading}} @col1="ALL FILES"  @col2="TYPE"/> --}}
-<Table>
-    <tr>
-      <th>ALL FILES</th>
-      <th>TYPE</th>
-      
-</tr>
-
 {{#if this.result.files}}
-      
-      {{#each this.result.files as |file|}}
-      <tr>
-            <td>{{tohtml (highlight file.name this.result.keyword)}}</td>
-            <td>{{file.type}}</td>
-      </tr>
-      {{/each}}
-      {{else}}
-      <tr>
-            <td>{{this.loading}}</td>
-            <td>{{this.loading}}</td>
-      </tr>
-      {{/if}}
-</Table>
+
+<Table @result={{this.result}} />
+
 {{/if}}
 
 

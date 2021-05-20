@@ -1,23 +1,17 @@
 <table class="file-table">
-{{!-- <tr>
-      <th>{{@col1}}</th>
-      <th>{{@col2}}</th>
-      
-</tr>
-
-{{#if @result.files}}
-      
+      <tr>
+      {{#each @result.columns as |column|}}
+            <th>{{column}}</th>
+      {{/each}}
+      </tr>
       {{#each @result.files as |file|}}
       <tr>
-            <td>{{tohtml (highlight file.name @result.keyword)}}</td>
-            <td>{{file.type}}</td>
+            
+            {{#each-in file as |name value|}}
+                  <td>
+                  {{tohtml (highlight value @result.keyword)}}
+                  </td>
+            {{/each-in}}
       </tr>
       {{/each}}
-      {{else}}
-      <tr>
-            <td>{{@loading}}</td>
-            <td>{{@loading}}</td>
-      </tr>
-      {{/if}} --}}
-      {{yield}}
 </table>
