@@ -128,11 +128,31 @@ td, th {
   margin: auto;
   width: 50%;
   border: 3px solid rgb(2, 98, 136);
-  padding: 10px;
+  padding: 20px;
 }
 
 .input-box{
   margin-left: 20%;
   width:50%;
   padding: 15px;
+}
+
+/* .graph-div{
+  margin:auto;
+  width: 60%;
+  border: 3px solid #73AD21;
+  padding: 50px;
+} */
+.login-head {
+  margin:auto;
+  width: 50%;
+  padding: 10px;
+}
+.login-head h1 {
+  margin-left: 20%;
+  position: relative;
+  padding: 5px 0 0 8px;
+  color: #0f4583;
+  font-size: 2.8em;
+  font-style:oblique;
 }

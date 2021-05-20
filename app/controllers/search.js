@@ -11,10 +11,10 @@ export default class SearchController extends Controller {
     @tracked loading;
     @service user;
 
-    @action
-    logOut(){
-        this.user.logOut();
-    }
+    // @action
+    // logOut(){
+    //     this.user.logOut();
+    // }
     
     //function to fetch the files using the user inputs
     @action
@@ -25,7 +25,7 @@ export default class SearchController extends Controller {
         }
         else{
             this.loading = "loading...";
-            let response = await fetch(`http://localhost:9090/SampleWebApp/getfile?keyword=${keyword}&directoryPath=${directoryPath}`);
+            let response = await fetch(`http://localhost:9090/SampleWebApp/getfile?keyword=${keyword}&directoryPath=${directoryPath}&phone=${this.user.userPhone}`);
             let data = await response.json();
             console.log(data);
             this.result = data;

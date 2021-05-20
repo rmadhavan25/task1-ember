@@ -19,6 +19,9 @@ module.exports = function (defaults) {
   // modules that you would like to import into your application
   // please specify an object with the list of modules as keys
   // along with the exports of each module as its value.
-
+    // Import fusioncharts library
+    app.import("node_modules/fusioncharts/fusioncharts.js");
+    app.import("node_modules/fusioncharts/fusioncharts.charts.js");
+    app.import("node_modules/fusioncharts/themes/fusioncharts.theme.fusion.js");
   return app.toTree();
 };

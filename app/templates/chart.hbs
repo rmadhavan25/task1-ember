@@ -1,0 +1,11 @@
+{{page-title "Chart"}}
+<h1>{{ this.title }}</h1>
+
+<div name="graph-div">
+    {{fusioncharts-xt width=this.data1.width height=this.data1.height type=this.data1.type dataFormat=this.data1.dataFormat
+    dataSource=this.data1.dataSource }}
+    <br>
+    {{fusioncharts-xt width=this.data2.width height=this.data2.height type=this.data2.type dataFormat=this.data2.dataFormat
+    dataSource=this.data2.dataSource }}
+</div>
+
