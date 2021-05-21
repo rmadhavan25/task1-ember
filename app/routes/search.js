@@ -13,6 +13,13 @@ export default class SearchRoute extends Route {
         }
         
     }
+
+    async model(){
+        //api call goes here;
+        let response = await fetch(`http://localhost:9090/SampleWebApp/keyworddata?phone=${this.user.userPhone}`);
+        let data = await response.json();
+        this.user.updateKeywordData(data);
+    }
   
 }
 

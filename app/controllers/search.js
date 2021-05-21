@@ -23,12 +23,6 @@ export default class SearchController extends Controller {
             console.log(data);
             this.result = data;
             console.log(this.result);
-            // this.user.updateFiles(data.files);
-            // this.user.updateKeyword(data.keyword);
-            // this.user.updateColumns(data.columns);
-            // console.log(this.user.files);
-            // console.log(this.user.keyword);
-            // console.log(this.user.columns);
         }
         
         
