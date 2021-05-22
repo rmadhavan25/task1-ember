@@ -1,11 +1,11 @@
 {{page-title "Chart"}}
 <h1>{{ this.title }}</h1>
 
-<div name="graph-div">
-    {{fusioncharts-xt width=this.userKeywordChart.keywordChartData.width height=this.userKeywordChart.keywordChartData.height type=this.userKeywordChart.keywordChartData.type dataFormat=this.userKeywordChart.keywordChartData.dataFormat
-    dataSource=this.userKeywordChart.keywordChartData.dataSource }}
+<div class="graph-div">
+    {{#each @model as |data|}}
+    {{fusioncharts-xt width="1500" height="350" type="column3d" dataFormat="json"
+    dataSource=data }}
     <br>
-    {{fusioncharts-xt width=this.userDirectoryChart.directoryChartData.width height=this.userDirectoryChart.directoryChartData.height type=this.userDirectoryChart.directoryChartData.type dataFormat=this.userDirectoryChart.directoryChartData.dataFormat
-    dataSource=this.userDirectoryChart.directoryChartData.dataSource }}
+    {{/each}}
 </div>
 

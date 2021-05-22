@@ -131,6 +131,17 @@ td, th {
   padding: 20px;
 }
 
+.error-message{
+  margin:auto;
+  width: 50%;
+  margin-left: 20%;
+  padding: 5px;
+}
+
+.error-message span{
+  color: red;
+}
+
 .input-box{
   margin-left: 20%;
   width:50%;

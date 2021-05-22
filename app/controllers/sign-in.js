@@ -8,16 +8,18 @@ export default class SearchController extends Controller {
 
     @service router;
     @service user;
+    @tracked errorMessage;
 
     @action
     async verifyUser(phone,pass){
         //check fields
         console.log(phone,pass)
         if(phone==undefined || pass==undefined || phone=="" || pass==""){
-            alert('phone/password cannot be empty');
+            this.errorMessage = 'phone/password cannot be empty';
         }
         else{
             //api call
+            this.errorMessage = null;
             let response = await fetch(`http://localhost:9090/SampleWebApp/signin?password=${pass}&phoneNumber=${phone}`);
             let data = await response.json();
             if(data.logInStatus==='OK'){
@@ -25,7 +27,7 @@ export default class SearchController extends Controller {
                 this.router.replaceWith('/');
             }
             else{
-                alert(data.logInStatus);
+                this.errorMessage = data.logInStatus;
             }
             
         }

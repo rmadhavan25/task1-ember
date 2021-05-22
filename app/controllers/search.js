@@ -8,16 +8,17 @@ export default class SearchController extends Controller {
 
     //variable to store the results from api call
     @tracked result;
+    @tracked errorMessage;
     @service user;
 
     @action
     async getFiles(directoryPath,keyword){
         console.log(directoryPath,keyword)
         if(directoryPath==undefined || keyword==undefined || directoryPath=="" || keyword==""){
-            alert('Please enter all the details');
+            this.errorMessage = 'Please enter all the details';
         }
         else{
-
+            this.errorMessage = null
             let response = await fetch(`http://localhost:9090/SampleWebApp/getfile?keyword=${keyword}&directoryPath=${directoryPath}&phone=${this.user.userPhone}`);
             let data = await response.json();
             console.log(data);
