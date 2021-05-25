@@ -1,31 +1,35 @@
 {{page-title "Search"}}
 
 
-
 {{!-- input box --}}
 <div class="input-div">
+    <h2>SEARCH FILES-></h2>
     {{input type="text"  placeholder="Enter Directory || eg:D:/ or D:/folder-name" class="input-box"  value=this.directoryPath}}<br><br>
     {{input list="keywords-sug"  placeholder="Enter filename/keyword" class="input-box" value=this.keyword}}
     <datalist id="keywords-sug">
-        <option value={{@model.[0]}}></option>
-        <option value={{@model.[1]}}></option>
-        <option value={{@model.[2]}}></option>
+        {{#each @model as |keyword|}}
+        <option value = {{keyword}}></option>
+        {{/each}}
     </datalist>
     <br><br>
-    <div class="error-message">
-        <span>{{this.errorMessage}}</span>
-    </div>
-    <button type="button" class="button"{{on "click" (fn this.getFiles this.directoryPath this.keyword)}}>Search</button>
+    <Error @errorMessage = {{this.errorMessage}} />
+    <button type="button" class="button"{{on "click" (fn this.getFiles this.directoryPath this.keyword)}}>Search🔍</button>
+    <button type="button" class="button"{{on "click" (fn this.getChartData)}}>visuals📊</button>
 </div>
 
 <br><br>
 
 {{!-- result table --}}
 {{#if this.result.files}}
-
-<Table @result={{this.result}} />
-
+    <Table @result={{this.result}} />
 {{/if}}
+
+{{!-- keyowrd and directory graphical data --}}
+{{#if this.chartResult}}
+    <Graph @width="1500" @height="350" @type="column3d" @format="json" @data={{this.chartResult.[0]}}/>
+    <Graph @width="1500" @height="350" @type="column3d" @format="json" @data={{this.chartResult.[1]}}/>
+{{/if}}
+
 
 
 

@@ -47,8 +47,8 @@ p {
 .button {
   padding: 10px 30px 10px;
   text-decoration: none;
-  color: #fff;
-  background: #0d314d;
+  color: rgb(206, 203, 203);
+  background: #000000;
   border-radius: 5px;
   border: none;
   font-size: 20px;
@@ -65,18 +65,22 @@ p {
 
 .menu {
   height: 4em;
-  background-color: #677ae4;
-  background-color: #05526A;
-  background-color: #10405c;
+  /* background-color: #677ae4;
+  background-color: #05526A; */
+  background-color: #000000;
+  text-align: center;
 }
 
 .menu h1 {
   position: relative;
   padding: 5px 0 0 8px;
-  color: #f9f9f9;
+  color: #adb4b6;
   font-size: 1.8em;
   font-style: italic;
 }
+/* .menu-index a{
+  text-align: center;
+} */
 
 .menu a,
 .menu .links {
@@ -127,9 +131,19 @@ td, th {
 .input-div, .file-table{
   margin: auto;
   width: 50%;
-  border: 3px solid rgb(2, 98, 136);
+  border: 3px solid rgb(0, 0, 0);
   padding: 20px;
 }
+
+.input-div h2{
+  color: #8e9da8;
+  margin-left: 20%;
+  font-style:oblique;
+}
+
+/* .input-div button{
+  margin-left:18%
+} */
 
 .error-message{
   margin:auto;
@@ -163,7 +177,7 @@ td, th {
   margin-left: 20%;
   position: relative;
   padding: 5px 0 0 8px;
-  color: #0f4583;
+  color: #687077;
   font-size: 2.8em;
   font-style:oblique;
 }

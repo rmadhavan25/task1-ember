@@ -9,6 +9,7 @@ export default class SearchController extends Controller {
     //variable to store the results from api call
     @tracked result;
     @tracked errorMessage;
+    @tracked chartResult;
     @service user;
 
     @action
@@ -18,7 +19,8 @@ export default class SearchController extends Controller {
             this.errorMessage = 'Please enter all the details';
         }
         else{
-            this.errorMessage = null
+            this.chartResult = null;
+            this.errorMessage = null;
             let response = await fetch(`http://localhost:9090/SampleWebApp/getfile?keyword=${keyword}&directoryPath=${directoryPath}&phone=${this.user.userPhone}`);
             let data = await response.json();
             console.log(data);
@@ -27,6 +29,15 @@ export default class SearchController extends Controller {
         }
         
         
+    }
+
+    @action
+    async getChartData(){
+        this.result = null;
+        let response = await fetch(`http://localhost:9090/SampleWebApp/getchartdata?phone=${this.user.userPhone}`);
+        let data  = await response.json();
+        console.log(data);
+        this.chartResult = data;
     }
     
 

@@ -1,13 +1,11 @@
 <nav class="menu">
   <LinkTo @route="index" class="menu-index">
-    <h1>GetMyFiles</h1>
+    <h1>GetMyFiles📁</h1>
   </LinkTo>
-  <div class="links">
+  {{!-- <div class="links">
     <LinkTo @route="search" class="menu-about">
       |Search Files|
     </LinkTo>
-    <LinkTo @route="chart" class="menu-about">
-      |My Data|
-    </LinkTo>
-  </div>
+  </div> --}}
+  {{yield}}
 </nav>

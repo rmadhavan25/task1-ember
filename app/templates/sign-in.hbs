@@ -8,8 +8,6 @@
 <div class="input-div">
     {{input type="text"  placeholder="PhoneNumber" class="input-box"  value=this.phoneNumber }}<br><br>
     {{input type="password"  placeholder="Enter Password" class="input-box" value=this.password }}<br><br>
-    <div class="error-message">
-        <span>{{this.errorMessage}}</span>
-    </div>
+    <Error @errorMessage = {{this.errorMessage}} />
     <button type="button" class="button"{{on "click" (fn this.verifyUser this.phoneNumber this.password)}}>--></button>
 </div>
