@@ -20,7 +20,7 @@ export default class SearchController extends Controller {
         else{
             //api call
             this.errorMessage = null;
-            let response = await fetch(`http://localhost:9090/SampleWebApp/signin?password=${pass}&phoneNumber=${phone}`);
+            let response = await fetch(`http://localhost:9090/getMyFilesServer/webapi/signin?password=${pass}&phoneNumber=${phone}`);
             let data = await response.json();
             if(data.logInStatus==='OK'){
                 this.user.logIn(phone);

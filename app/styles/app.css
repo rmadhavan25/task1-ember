@@ -181,3 +181,9 @@ td, th {
   font-size: 2.8em;
   font-style:oblique;
 }
+
+.nofiles-div h2 {
+  color:#687077;
+  margin-left: 25%;
+  position: relative;
+}

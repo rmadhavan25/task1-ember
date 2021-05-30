@@ -20,8 +20,14 @@
 <br><br>
 
 {{!-- result table --}}
-{{#if this.result.files}}
+{{#if this.result.keyword}}
+    {{#if this.result.files}}
     <Table @result={{this.result}} />
+    {{else}}
+    <div class="nofiles-div">
+        <h2>No Files To Display</h2>
+    </div>
+    {{/if}}
 {{/if}}
 
 {{!-- keyowrd and directory graphical data --}}

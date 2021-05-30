@@ -16,7 +16,7 @@ export default class SearchRoute extends Route {
 
     async model(){
         //api call goes here;
-        let response = await fetch(`http://localhost:9090/SampleWebApp/keyworddata?phone=${this.user.userPhone}`);
+        let response = await fetch(`http://localhost:9090/getMyFilesServer/webapi/keyworddata?phone=${this.user.userPhone}`);
         let data = await response.json();
         return data;
         //this.user.updateKeywordData(data);
