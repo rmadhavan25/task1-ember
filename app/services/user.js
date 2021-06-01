@@ -12,10 +12,6 @@ export default class UserService extends Service {
         this.userPhone = phone;
     }
 
-    logOut(){
-        this.isLogged=false;
-        this.userPhone = null;
-    }
 
     updateKeywordData(data){
         this.keywordData = data;

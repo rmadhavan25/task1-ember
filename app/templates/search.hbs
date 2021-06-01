@@ -4,8 +4,8 @@
 {{!-- input box --}}
 <div class="input-div">
     <h2>SEARCH FILES-></h2>
-    {{input type="text"  placeholder="Enter Directory || eg:D:/ or D:/folder-name" class="input-box"  value=this.directoryPath}}<br><br>
-    {{input list="keywords-sug"  placeholder="Enter filename/keyword" class="input-box" value=this.keyword}}
+    <input type="text"  placeholder="Enter Directory || eg:D:/ or D:/folder-name" class="input-box"  value={{this.directoryPath}} {{on "change" this.updateDirectoryPath}}><br><br>
+    <input list="keywords-sug"  placeholder="Enter filename/keyword" class="input-box" value={{this.keyword}} {{on "keyup" this.updateKeyword}}>
     <datalist id="keywords-sug">
         {{#each @model as |keyword|}}
         <option value = {{keyword}}></option>

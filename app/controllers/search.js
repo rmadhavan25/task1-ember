@@ -10,7 +10,36 @@ export default class SearchController extends Controller {
     @tracked result;
     @tracked errorMessage;
     @tracked chartResult;
+    @tracked keyword;
+    @tracked directoryPath;
     @service user;
+
+    @action
+    async updateKeyword(event){
+        //console.log("onchange fired");
+        console.log(this.directoryPath);
+        this.keyword = event.target.value;
+        if(this.directoryPath!==undefined){
+
+            this.errorMessage = null;
+            this.chartResult = null;
+            let response = await fetch(`http://localhost:9090/getMyFilesServer/webapi/getfile?keyword=${this.keyword}&directoryPath=${this.directoryPath}&phone=${this.user.userPhone}&searchbtn=false`);
+            let data = await response.json();
+            console.log(data);
+            this.result = data;
+            console.log(this.result);
+
+        }
+        else{
+            this.errorMessage = "Please specify a directory";
+        }
+        
+    }
+
+    @action
+    updateDirectoryPath(event){
+        this.directoryPath = event.target.value;
+    }
 
     @action
     async getFiles(directoryPath,keyword){
@@ -21,7 +50,7 @@ export default class SearchController extends Controller {
         else{
             this.chartResult = null;
             this.errorMessage = null;
-            let response = await fetch(`http://localhost:9090/getMyFilesServer/webapi/getfile?keyword=${keyword}&directoryPath=${directoryPath}&phone=${this.user.userPhone}`);
+            let response = await fetch(`http://localhost:9090/getMyFilesServer/webapi/getfile?keyword=${keyword}&directoryPath=${directoryPath}&phone=${this.user.userPhone}&searchbtn=true`);
             let data = await response.json();
             console.log(data);
             this.result = data;
