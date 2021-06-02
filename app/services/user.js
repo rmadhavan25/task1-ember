@@ -5,7 +5,7 @@ export default class UserService extends Service {
     isLogged = false;
     userPhone = null;
     keywordData = null;
-    result = null;
+    fileResponse = null;
 
     logIn(phone){
         this.isLogged = true;
