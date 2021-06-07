@@ -4,6 +4,8 @@ import { action} from '@ember/object';
 import { inject as service } from '@ember/service';
 
 
+
+
 export default class SearchController extends Controller {
 
     //variable to store the results from api call
@@ -15,25 +17,8 @@ export default class SearchController extends Controller {
     @service user;
 
     @action
-    async updateKeyword(event){
-        //console.log("onchange fired");
-        //console.log(this.directoryPath);
-        this.keyword = event.target.value;
-        // if(this.directoryPath!==undefined){
-
-        //     this.errorMessage = null;
-        //     this.chartResult = null;
-        //     let response = await fetch(`http://localhost:9090/getMyFilesServer/webapi/getfile?keyword=${this.keyword}&directoryPath=${this.directoryPath}&phone=${this.user.userPhone}&searchbtn=false`);
-        //     let data = await response.json();
-        //     console.log(data);
-        //     this.result = data;
-        //     console.log(this.result);
-
-        // }
-        // else{
-        //     this.errorMessage = "Please specify a directory";
-        // }
-        
+    updateKeyword(event){
+        this.keyword = event.target.value;    
     }
 
     @action
@@ -41,54 +26,70 @@ export default class SearchController extends Controller {
         this.directoryPath = event.target.value;
     }
 
-
+    
    
 
     @action
-    async getFiles(directoryPath,keyword){
+    getFiles(directoryPath,keyword){
         console.log(directoryPath,keyword)
         if(directoryPath==undefined || keyword==undefined || directoryPath=="" || keyword==""){
             this.errorMessage = 'Please enter all the details';
         }
         else{
-            let skip = 0;
-            this.result = null;
             this.chartResult = null;
-            this.errorMessage = null;
-            let response = await fetch(`http://localhost:9090/getMyFilesServer/webapi/getfile?keyword=${keyword}&directoryPath=${directoryPath}&phone=${this.user.userPhone}&skip=${skip}`);
-            let data = await response.json();
-            console.log("fetched once ",data);
-            this.user.fileResponse = data;
-            console.log("file  detail",data.files[0]);
-            this.count++;
-            this.result = this.user.fileResponse;
+            let allFileDetail = {
+                keyword:"null",
+                columns:[],
+                files:[]
+            }
+            let fileInfo = {
+                name:"null",
+                type:"null"
+            }
+
+            allFileDetail.columns.push('ALLFILES');
+            allFileDetail.columns.push('TYPE');
+            allFileDetail.keyword = this.keyword;
             
-            if(data.files.length > 0){
-                const interval = setInterval(async()=>{
-                    this.result = null;
-                    skip++;
-                    let response = await fetch(`http://localhost:9090/getMyFilesServer/webapi/getfile?keyword=${keyword}&directoryPath=${directoryPath}&phone=${this.user.userPhone}&skip=${skip}`);
-                    let data = await response.json();
-                    console.log("fetched once ",data);
-                    if(data.files.length < 1){
-                        this.count++;
-                        this.result = this.user.fileResponse ;
-                        //break;
-                        clearInterval(interval);
-                    }
-                    this.user.fileResponse.files.push(data.files[0]);
-                    this.result = this.user.fileResponse ;
-                    
-                    
-                    
-                    
-                },200)
+            let client = new WebSocket(`ws://127.0.0.1:9090/getMyFilesServer/getfile?keyword=${this.keyword}&directory=${this.directoryPath}&phone=${this.user.userPhone}`);
+            const updateFileResult = (fileName,fileType) => {
+                this.result = null;
+                fileInfo.name = fileName;
+                fileInfo.type = fileType;
+                allFileDetail.files.push(fileInfo);
+                this.result = allFileDetail;
+                console.log(this.result);
+                
+            }
+
+            const updateNoFilesResult = () => {
+                this.result = allFileDetail;
             }
             
-            
-            console.log(this.result);
+            function sleep(milliseconds) {
+                var start = new Date().getTime();
+                for (var i = 0; i < 1e7; i++) {
+                  if ((new Date().getTime() - start) > milliseconds){
+                    break;
+                  }
+                }
+              }
+            client.onmessage = function(event) {
+                let msg = event.data;
+                if(msg==="null"){
+                    client.close();
+                    updateNoFilesResult();
+                    console.log("socket closed");
+                }
+                else{
+                    let fileDetails = msg.split(",");
+                    sleep(250);
+                    updateFileResult(fileDetails[0],fileDetails[1]);
+                }
+                
+            }
+           console.log(this.result);
         }
-        
         
     }
 
@@ -103,3 +104,4 @@ export default class SearchController extends Controller {
     
 
 }
+
